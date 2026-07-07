@@ -9,13 +9,6 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Stripe webhook (NO protect middleware)
-router.post(
-  "/webhook",
-  express.raw({ type: "application/json" }),
-  webhookHandler
-);
-
 router.post("/create-session", protect, createPaymentSession);
 router.post("/confirm", protect, confirmPayment);
 

@@ -97,17 +97,36 @@ export const webhookHandler = async (req, res) => {
 
     const bookingId = session.metadata.bookingId;
 
+    console.log("Booking ID from Stripe:", bookingId);
+
     const booking = await Booking.findById(bookingId);
 
-    if (booking) {
-      booking.paymentStatus = "paid";
-      booking.bookingStatus = "confirmed";
-
-      await booking.save();
-
-      console.log("✅ Booking confirmed:", bookingId);
+    if (!booking) {
+      console.log("❌ Booking not found!");
+      return res.json({ received: true });
     }
-  }
 
+    console.log("Before update:");
+    console.log({
+      paymentStatus: booking.paymentStatus,
+      bookingStatus: booking.bookingStatus
+    });
+
+    booking.paymentStatus = "paid";
+    booking.bookingStatus = "confirmed";
+
+    await booking.save();
+
+    // Read it again from MongoDB
+    const updatedBooking = await Booking.findById(bookingId);
+
+    console.log("After update:");
+    console.log({
+      paymentStatus: updatedBooking.paymentStatus,
+      bookingStatus: updatedBooking.bookingStatus
+    });
+
+    console.log("✅ Booking updated successfully");
+  }
   res.json({ received: true });
 };

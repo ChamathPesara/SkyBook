@@ -71,11 +71,7 @@ export const deleteFlight = async (req, res) => {
 
 export const searchFlights = async (req, res) => {
   try {
-    const { departureCity, arrivalCity, date } = req.query;
-
-    const startDate = new Date(date);
-    const endDate = new Date(date);
-    endDate.setDate(endDate.getDate() + 1);
+    const { departureCity, arrivalCity } = req.query;
 
     const flights = await Flight.find({
       departureCity: {
@@ -83,10 +79,6 @@ export const searchFlights = async (req, res) => {
       },
       arrivalCity: {
         $regex: new RegExp(arrivalCity, "i")
-      },
-      departureTime: {
-        $gte: startDate,
-        $lt: endDate
       }
     });
 
