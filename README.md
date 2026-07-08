@@ -100,11 +100,10 @@ Shared tokens live in `src/styles/theme.js`; the ticket-stub divider lives in `s
 skybook/
 ├── client/
 │   └── src/
-│       ├── components/       # NavBar, Logo, TicketDivider, LoadingScreen
-│       ├── pages/             # Landing, Login, Register, Home, Booking,
-│       │                      # Payment, PaymentSuccess, MyBookings, Cancel
-│       ├── services/           # Axios API instance
-│       └── styles/            # theme.js — shared design tokens
+│       ├── components/       # NavBar, Logo, TicketDivider, LoadingScreen,Theme 
+│       ├── pages/            # Landing, Login, Register, Home, Booking,
+│       └──                   # Payment, PaymentSuccess, MyBookings, Cancel
+│       
 │
 ├── server/
 │   ├── controllers/           # auth, flights, bookings, payments, tickets
@@ -114,8 +113,7 @@ skybook/
 │   └── utils/                  # generateTicket.js (PDF + QR)
 │
 └── README.md
-```
-> Adjust this tree to match your actual repo layout if it differs.
+
 
 ---
 
@@ -164,17 +162,11 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 CLIENT_URL=http://localhost:3000
 ```
 
-> Never commit your `.env` file — make sure it's listed in `.gitignore`.
-
 ---
 
 ## 📸 Screenshots
 
-| Search & Booking | Boarding Pass Confirmation |
-|---|---|
-| _add screenshot_ | _add screenshot_ |
 
-> Drop PNG/JPG screenshots into a `/screenshots` folder and reference them here, e.g. `![Home](screenshots/home.png)`.
 
 ---
 
@@ -191,6 +183,6 @@ CLIENT_URL=http://localhost:3000
 
 <div align="center">
 
-Built with ✈️ by the SkyBook team
+Enjoy the ✈️ experience with us !!!
 
 </div>
