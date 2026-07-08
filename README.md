@@ -100,11 +100,10 @@ Shared tokens live in `src/styles/theme.js`; the ticket-stub divider lives in `s
 skybook/
 ├── client/
 │   └── src/
-│       ├── components/       # NavBar, Logo, TicketDivider, LoadingScreen
+│       ├── components/       # NavBar, Logo, TicketDivider, LoadingScreen, Theme
 │       ├── pages/             # Landing, Login, Register, Home, Booking,
 │       │                      # Payment, PaymentSuccess, MyBookings, Cancel
-│       ├── services/           # Axios API instance
-│       └── styles/            # theme.js — shared design tokens
+│       └── services/           # Axios API instance
 │
 ├── server/
 │   ├── controllers/           # auth, flights, bookings, payments, tickets
@@ -115,8 +114,6 @@ skybook/
 │
 └── README.md
 ```
-> Adjust this tree to match your actual repo layout if it differs.
-
 ---
 
 ## ⚙️ Installation
@@ -163,18 +160,42 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 
 CLIENT_URL=http://localhost:3000
 ```
-
-> Never commit your `.env` file — make sure it's listed in `.gitignore`.
-
 ---
 
 ## 📸 Screenshots
 
-| Search & Booking | Boarding Pass Confirmation |
-|---|---|
-| _add screenshot_ | _add screenshot_ |
+- Landing Page
+<img width="959" height="500" alt="Screenshot 2026-07-08 085830" src="https://github.com/user-attachments/assets/a5fabfbe-326d-489f-977f-552a8b8a8b68" />
 
-> Drop PNG/JPG screenshots into a `/screenshots` folder and reference them here, e.g. `![Home](screenshots/home.png)`.
+- Sign Up Page
+  <img width="958" height="499" alt="Screenshot 2026-07-08 080434" src="https://github.com/user-attachments/assets/4f5033e6-f665-4551-b45e-7a3636b79ed2" />
+
+- Sign In Page
+  <img width="959" height="500" alt="Screenshot 2026-07-08 080528" src="https://github.com/user-attachments/assets/1d9bf3ff-604a-4017-8724-3d779692b8e8" />
+
+- Home Page
+  <img width="955" height="500" alt="Screenshot 2026-07-08 080605" src="https://github.com/user-attachments/assets/026e99ee-0570-4322-b18d-f1d87920aaeb" />
+
+- Available Flights 
+<img width="959" height="499" alt="Screenshot 2026-07-08 084848" src="https://github.com/user-attachments/assets/d07340b6-a735-4bd4-8fd0-87d396bde92a" />
+
+- Booking Page
+<img width="959" height="497" alt="Screenshot 2026-07-08 084957" src="https://github.com/user-attachments/assets/9c178688-19dd-461d-a694-8b3927f4327e" />
+
+- Payment Page
+<img width="959" height="500" alt="Screenshot 2026-07-08 085020" src="https://github.com/user-attachments/assets/44a1ecca-88c4-4077-ba85-8f009ff1ad6d" />
+
+- Stripe Sandbox
+<img width="956" height="499" alt="Screenshot 2026-07-08 085131" src="https://github.com/user-attachments/assets/9181292c-0cf7-4cba-b93b-e26c06119741" />
+
+- Payment Success Page
+<img width="959" height="500" alt="Screenshot 2026-07-08 085211" src="https://github.com/user-attachments/assets/2e31e151-0efd-48db-a568-6682ea1b6037" />
+
+- My Bookings Page
+<img width="959" height="500" alt="Screenshot 2026-07-08 085339" src="https://github.com/user-attachments/assets/4d4889ed-c7e0-49f2-81c4-61400946e2a4" />
+
+- Issued E-Ticket
+<img width="959" height="499" alt="Screenshot 2026-07-08 085252" src="https://github.com/user-attachments/assets/2519b495-dcc6-468d-8149-6809e6244ef4" />
 
 ---
 
@@ -191,6 +212,6 @@ CLIENT_URL=http://localhost:3000
 
 <div align="center">
 
-Built with ✈️ by the SkyBook team
+Share your great ✈️ with us !!!
 
 </div>
