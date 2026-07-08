@@ -34,7 +34,7 @@ function Home() {
         style={{
           background: `linear-gradient(160deg, ${colors.navy} 0%, ${colors.navyDeep} 100%)`,
           color: "white",
-          padding: "56px 20px 100px",
+          padding: "50px 20px 80px",
           textAlign: "center"
         }}
       >

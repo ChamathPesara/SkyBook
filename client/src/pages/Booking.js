@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { colors, fonts, styles, GlobalFonts } from "../components/Theme";
 import TicketDivider from "../components/TicketDivider";
+import LoadingScreen from "../components/LoadingScreen";
 
 function Booking() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [flight, setFlight] = useState(null);
   const [selectedSeat, setSelectedSeat] = useState("");
@@ -53,12 +55,7 @@ function Booking() {
   };
 
   if (!flight) {
-    return (
-      <div style={{ ...styles.page, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <GlobalFonts />
-        <p style={{ color: colors.slate, fontFamily: fonts.mono }}>Loading flight…</p>
-      </div>
-    );
+    return <LoadingScreen title="Loading flight…" subtitle="Fetching flight and seat details." />;
   }
 
   const seatStyle = (seat) => ({
@@ -85,13 +82,24 @@ function Booking() {
       <div style={{ maxWidth: "760px", margin: "0 auto" }}>
         {/* Flight header */}
         <div style={{ ...styles.card, padding: "24px", marginBottom: "24px" }}>
-          <div style={styles.eyebrow}>BOARDING · SEAT SELECTION</div>
-          <h2 style={{ ...styles.h2, fontSize: "24px", color: colors.navy, marginTop: "8px" }}>
-            {flight.airline}
-          </h2>
-          <p style={{ fontFamily: fonts.mono, color: colors.slate, marginTop: "4px" }}>
-            {flight.departureCity} → {flight.arrivalCity}
-          </p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div>
+              <div style={styles.eyebrow}>BOARDING · SEAT SELECTION</div>
+              <h2 style={{ ...styles.h2, fontSize: "24px", color: colors.navy, marginTop: "8px" }}>
+                {flight.airline}
+              </h2>
+              <p style={{ fontFamily: fonts.mono, color: colors.slate, marginTop: "4px" }}>
+                {flight.departureCity} → {flight.arrivalCity}
+              </p>
+            </div>
+
+            <button
+              onClick={() => navigate("/home")}
+              style={{ ...styles.buttonGhost, color: colors.navy, border: `1.5px solid ${colors.line}`, padding: "9px 18px", fontSize: "13px" }}
+            >
+              ← Back to Home
+            </button>
+          </div>
         </div>
 
         <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
@@ -154,6 +162,19 @@ function Booking() {
               style={{ ...(selectedSeat ? styles.button : styles.buttonDisabled), width: "100%" }}
             >
               Confirm Booking
+            </button>
+
+            <button
+              onClick={() => navigate("/home")}
+              style={{
+                ...styles.buttonGhost,
+                color: colors.slate,
+                border: `1.5px solid ${colors.line}`,
+                width: "100%",
+                marginTop: "10px"
+              }}
+            >
+              Cancel
             </button>
           </div>
         </div>

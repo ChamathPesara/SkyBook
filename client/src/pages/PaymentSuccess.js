@@ -151,7 +151,7 @@ function PaymentSuccess() {
           <button
             onClick={() => navigate("/my-bookings")}
             style={{ ...styles.buttonGhost, color: colors.navy, border: `1.5px solid ${colors.line}` }}
-          ></button>
+          >My Bookings</button>
           
           <button onClick={downloadTicket} style={styles.button}>
             Download Ticket

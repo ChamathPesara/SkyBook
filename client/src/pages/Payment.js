@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { colors, fonts, styles, GlobalFonts } from "../components/Theme";
 import TicketDivider from "../components/TicketDivider";
+import LoadingScreen from "../components/LoadingScreen";
 
 function Payment() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [booking, setBooking] = useState(null);
 
   useEffect(() => {
@@ -31,13 +33,17 @@ function Payment() {
     }
   };
 
-  if (!booking) {
-    return (
-      <div style={{ ...styles.page, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <GlobalFonts />
-        <p style={{ color: colors.slate, fontFamily: fonts.mono }}>Loading booking…</p>
-      </div>
+  const handleCancel = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this payment? Your seat may be released."
     );
+    if (confirmed) {
+      navigate("/cancel");
+    }
+  };
+
+  if (!booking) {
+    return <LoadingScreen title="Loading booking…" subtitle="Fetching your booking details." />;
   }
 
   return (
@@ -45,10 +51,21 @@ function Payment() {
       <GlobalFonts />
 
       <div style={{ maxWidth: "460px", width: "100%" }}>
-        <div style={styles.eyebrow}>SKYBOOK · CHECKOUT</div>
-        <h2 style={{ ...styles.h2, fontSize: "26px", color: colors.navy, margin: "8px 0 20px" }}>
-          Payment
-        </h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
+          <div>
+            <div style={styles.eyebrow}>SKYBOOK · CHECKOUT</div>
+            <h2 style={{ ...styles.h2, fontSize: "26px", color: colors.navy, margin: "8px 0 0" }}>
+              Payment
+            </h2>
+          </div>
+
+          <button
+            onClick={() => navigate("/home")}
+            style={{ ...styles.buttonGhost, color: colors.navy, border: `1.5px solid ${colors.line}`, padding: "9px 18px", fontSize: "13px" }}
+          >
+            ← Back to Home
+          </button>
+        </div>
 
         {/* Boarding-pass style booking summary */}
         <div style={{ ...styles.card, padding: "26px" }}>
@@ -83,6 +100,19 @@ function Payment() {
 
         <button onClick={handlePayment} style={{ ...styles.button, width: "100%", marginTop: "20px" }}>
           Pay with Card 💳
+        </button>
+
+        <button
+          onClick={handleCancel}
+          style={{
+            ...styles.buttonGhost,
+            color: colors.slate,
+            border: `1.5px solid ${colors.line}`,
+            width: "100%",
+            marginTop: "10px"
+          }}
+        >
+          Cancel Payment
         </button>
       </div>
     </div>
